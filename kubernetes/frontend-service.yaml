@@ -1,0 +1,10 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: frontend-service
+spec:
+  selector:
+    app: ezrent-front
+  ports:
+  - protocol: TCP
+    port: 3000

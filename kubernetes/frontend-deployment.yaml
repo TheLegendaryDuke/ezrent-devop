@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ezrent-front
+  labels:
+    app: ezrent-front
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: ezrent-front
+#  template for pods created by this deployment
+  template:
+    metadata:
+      labels:
+        app: ezrent-front
+    spec:
+      containers:
+        - name: ezrent-front
+          image: gcr.io/ezrent-227517/front:latest
+          ports:
+            - containerPort: 3000
+          env:
+            - name: NODE_ENV
+              value: production

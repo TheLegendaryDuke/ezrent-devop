@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ezrent-back
+  labels:
+    app: ezrent-back
+spec:
+  replicas: 0
+  selector:
+    matchLabels:
+      app: ezrent-back
+#  template for pods created by this deployment
+  template:
+    metadata:
+      labels:
+        app: ezrent-back
+    spec:
+      containers:
+        - name: ezrent-back
+          image: gcr.io/ezrent-227517/back:latest
+          ports:
+            - containerPort: 8443
