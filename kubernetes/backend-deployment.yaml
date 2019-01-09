@@ -5,7 +5,7 @@ metadata:
   labels:
     app: ezrent-back
 spec:
-  replicas: 0
+  replicas: 1
   selector:
     matchLabels:
       app: ezrent-back
@@ -20,3 +20,64 @@ spec:
           image: gcr.io/ezrent-227517/back:latest
           ports:
             - containerPort: 8443
+          env:
+            - name: sql_host
+              valueFrom:
+                secretKeyRef:
+                  name: ezrent-secrets
+                  key: sql_host
+            - name: sql_username
+              valueFrom:
+                secretKeyRef:
+                  name: ezrent-secrets
+                  key: sql_username
+            - name: sql_password
+              valueFrom:
+                secretKeyRef:
+                  name: ezrent-secrets
+                  key: sql_password
+            - name: jwt_secret
+              valueFrom:
+                secretKeyRef:
+                  name: ezrent-secrets
+                  key: jwt_secret
+            - name: frontend
+              valueFrom:
+                secretKeyRef:
+                  name: ezrent-secrets
+                  key: frontend
+            - name: google_api_key
+              valueFrom:
+                secretKeyRef:
+                  name: ezrent-secrets
+                  key: google_api_key
+            - name: google_id
+              valueFrom:
+                secretKeyRef:
+                  name: ezrent-secrets
+                  key: google_id
+            - name: google_secret
+              valueFrom:
+                secretKeyRef:
+                  name: ezrent-secrets
+                  key: google_secret
+            - name: facebook_id
+              valueFrom:
+                secretKeyRef:
+                  name: ezrent-secrets
+                  key: facebook_id
+            - name: facebook_secret
+              valueFrom:
+                secretKeyRef:
+                  name: ezrent-secrets
+                  key: facebook_secret
+            - name: twitter_id
+              valueFrom:
+                secretKeyRef:
+                  name: ezrent-secrets
+                  key: twitter_id
+            - name: twitter_secret
+              valueFrom:
+                secretKeyRef:
+                  name: ezrent-secrets
+                  key: twitter_secret
