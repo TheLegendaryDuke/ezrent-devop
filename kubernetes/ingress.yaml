@@ -1,0 +1,22 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: ezrent-ingress
+  annotations:
+    kubernetes.io/ingress.allow-http: "false"
+    ingress.gcp.kubernetes.io/pre-shared-cert: "ezrent-aoranzhang"
+spec:
+  tls:
+    - secretName: aoranzhang
+  rules:
+    - host: ezrent.aoranzhang.com
+      http:
+        paths:
+          - path: /api/*
+            backend:
+              serviceName: backend-service
+              servicePort: 8443
+          - path: /*
+            backend:
+              serviceName: frontend-service
+              servicePort: 3000
